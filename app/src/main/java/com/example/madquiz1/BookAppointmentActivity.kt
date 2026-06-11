@@ -4,23 +4,32 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
+import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import java.util.Calendar
 
 class BookAppointmentActivity : AppCompatActivity() {
 
-    private lateinit var etFullName: EditText
-    private lateinit var etPhone: EditText
-    private lateinit var etEmail: EditText
+    private lateinit var etFullName: TextInputEditText
+    private lateinit var etPhone: TextInputEditText
+    private lateinit var etEmail: TextInputEditText
     private lateinit var spinnerType: Spinner
-    private lateinit var btnDatePicker: Button
+    private lateinit var btnDatePicker: MaterialButton
     private lateinit var tvSelectedDate: TextView
-    private lateinit var btnTimePicker: Button
+    private lateinit var btnTimePicker: MaterialButton
     private lateinit var tvSelectedTime: TextView
     private lateinit var rgGender: RadioGroup
     private lateinit var cbTerms: CheckBox
-    private lateinit var btnConfirm: Button
+    private lateinit var btnConfirm: MaterialButton
 
     private var selectedDate: String = ""
     private var selectedTime: String = ""
@@ -41,37 +50,49 @@ class BookAppointmentActivity : AppCompatActivity() {
         cbTerms = findViewById(R.id.cbTerms)
         btnConfirm = findViewById(R.id.btnConfirm)
 
-        // Spinner Setup
-        val types = arrayOf("Doctor Consultation", "Dentist Appointment", "Eye Specialist", "Skin Specialist", "General Checkup")
+        val types = arrayOf(
+            "Doctor Consultation",
+            "Dentist Appointment",
+            "Eye Specialist",
+            "Skin Specialist",
+            "General Checkup"
+        )
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerType.adapter = adapter
 
-        // Date Picker
         btnDatePicker.setOnClickListener {
             val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            val dpd = DatePickerDialog(this, { _, y, m, d ->
-                selectedDate = "$d/${m + 1}/$y"
-                tvSelectedDate.text = selectedDate
-            }, year, month, day)
-            dpd.show()
+            DatePickerDialog(
+                this@BookAppointmentActivity,
+                { _, y, m, d ->
+                    selectedDate = "$d/${m + 1}/$y"
+                    tvSelectedDate.text = selectedDate
+                    tvSelectedDate.setTextColor(
+                        ContextCompat.getColor(this@BookAppointmentActivity, R.color.primary)
+                    )
+                },
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
-        // Time Picker
         btnTimePicker.setOnClickListener {
             val c = Calendar.getInstance()
-            val hour = c.get(Calendar.HOUR_OF_DAY)
-            val minute = c.get(Calendar.MINUTE)
-
-            val tpd = TimePickerDialog(this, { _, h, min ->
-                selectedTime = String.format("%02d:%02d", h, min)
-                tvSelectedTime.text = selectedTime
-            }, hour, minute, true)
-            tpd.show()
+            TimePickerDialog(
+                this@BookAppointmentActivity,
+                { _, h, min ->
+                    selectedTime = String.format("%02d:%02d", h, min)
+                    tvSelectedTime.text = selectedTime
+                    tvSelectedTime.setTextColor(
+                        ContextCompat.getColor(this@BookAppointmentActivity, R.color.primary)
+                    )
+                },
+                c.get(Calendar.HOUR_OF_DAY),
+                c.get(Calendar.MINUTE),
+                true
+            ).show()
         }
 
         btnConfirm.setOnClickListener {
@@ -83,27 +104,30 @@ class BookAppointmentActivity : AppCompatActivity() {
                 intent.putExtra("TYPE", spinnerType.selectedItem.toString())
                 intent.putExtra("DATE", selectedDate)
                 intent.putExtra("TIME", selectedTime)
-                
+
                 val selectedGenderId = rgGender.checkedRadioButtonId
                 val radioButton = findViewById<RadioButton>(selectedGenderId)
-                intent.putExtra("GENDER", radioButton?.text.toString() ?: "Not Selected")
-                
+                intent.putExtra("GENDER", radioButton.text?.toString() ?: "Not Selected")
+
                 startActivity(intent)
             }
         }
     }
 
     private fun validateForm(): Boolean {
-        if (etFullName.text.isBlank()) {
-            etFullName.error = "Name is required"
+        if (etFullName.text.isNullOrBlank()) {
+            etFullName.requestFocus()
+            Toast.makeText(this, "Name is required", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (etPhone.text.isBlank()) {
-            etPhone.error = "Phone number is required"
+        if (etPhone.text.isNullOrBlank()) {
+            etPhone.requestFocus()
+            Toast.makeText(this, "Phone number is required", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (etEmail.text.isBlank()) {
-            etEmail.error = "Email is required"
+        if (etEmail.text.isNullOrBlank()) {
+            etEmail.requestFocus()
+            Toast.makeText(this, "Email is required", Toast.LENGTH_SHORT).show()
             return false
         }
         if (selectedDate.isEmpty()) {

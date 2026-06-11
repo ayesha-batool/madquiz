@@ -2,9 +2,9 @@ package com.example.madquiz1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 
 class ConfirmationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,6 @@ class ConfirmationActivity : AppCompatActivity() {
         val tvDate: TextView = findViewById(R.id.tvConfirmDate)
         val tvTime: TextView = findViewById(R.id.tvConfirmTime)
         val tvGender: TextView = findViewById(R.id.tvConfirmGender)
-        val btnBackHome: Button = findViewById(R.id.btnBackHome)
 
         val name = intent.getStringExtra("NAME") ?: ""
         val phone = intent.getStringExtra("PHONE") ?: ""
@@ -36,7 +35,7 @@ class ConfirmationActivity : AppCompatActivity() {
         tvTime.text = getString(R.string.confirm_time, time)
         tvGender.text = getString(R.string.confirm_gender, gender)
 
-        btnBackHome.setOnClickListener {
+        findViewById<MaterialButton>(R.id.btnBackHome).setOnClickListener {
             val homeIntent = Intent(this, MainActivity::class.java)
             homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(homeIntent)

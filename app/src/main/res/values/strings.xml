@@ -26,4 +26,8 @@
     <string name="confirm_time">Time: %1$s</string>
     <string name="confirm_gender">Gender: %1$s</string>
     <string name="back_home">Back to Home</string>
+    <string name="not_selected">Not selected</string>
+    <string name="booking_success">Your appointment has been booked successfully!</string>
+    <string name="home_tagline">Your health, our priority</string>
+    <string name="splash_tagline">Book smarter. Live healthier.</string>
 </resources>
