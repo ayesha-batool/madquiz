@@ -62,10 +62,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFullName"
+                        style="@style/Widget.App.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColor="@color/text_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,10 +79,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPhone"
+                        style="@style/Widget.App.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:importantForAutofill="no"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:textColor="@color/text_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -92,10 +96,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
+                        style="@style/Widget.App.TextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:importantForAutofill="no"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/text_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -111,7 +117,8 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="@dimen/spacing_sm"
                     android:background="@drawable/btn_outlined_bg"
-                    android:paddingHorizontal="12dp" />
+                    android:paddingHorizontal="12dp"
+                    android:popupBackground="@color/surface" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,7 +152,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="@string/not_selected"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="@color/text_primary"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -174,7 +181,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="@string/not_selected"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="@color/text_primary"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -198,6 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="@string/male"
+                        android:textColor="@color/text_primary"
                         app:buttonTint="@color/primary" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
@@ -206,6 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="@string/female"
+                        android:textColor="@color/text_primary"
                         app:buttonTint="@color/primary" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
@@ -213,6 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/other"
+                        android:textColor="@color/text_primary"
                         app:buttonTint="@color/primary" />
                 </RadioGroup>
 
@@ -222,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_lg"
                     android:text="@string/terms_conditions"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     app:buttonTint="@color/primary" />
 
                 <com.google.android.material.button.MaterialButton

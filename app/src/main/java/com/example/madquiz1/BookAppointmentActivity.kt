@@ -57,8 +57,8 @@ class BookAppointmentActivity : AppCompatActivity() {
             "Skin Specialist",
             "General Checkup"
         )
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, types)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinnerType.adapter = adapter
 
         btnDatePicker.setOnClickListener {

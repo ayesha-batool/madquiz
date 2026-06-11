@@ -40,9 +40,15 @@
         <item name="strokeColor">@color/primary</item>
     </style>
 
+    <style name="Widget.App.TextInputEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+    </style>
+
     <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/input_stroke_color</item>
         <item name="hintTextColor">@color/input_hint_color</item>
+        <item name="editTextStyle">@style/Widget.App.TextInputEditText</item>
         <item name="boxCornerRadiusTopStart">@dimen/corner_radius_sm</item>
         <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_sm</item>
         <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_sm</item>
